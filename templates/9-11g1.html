@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <title>Game1</title>   
+</head>
+<style>
+body {
+    background-image: url("{{ url_for('static', filename='9-11bg.jpg') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+        #videoElement {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 320px; /* Update width and height as needed */
+            height: 240px;
+            object-fit: cover;
+        }
+
+form {
+    background-color: #F8F8FF; /* light blue */
+    border: 2px solid #FFDAB9; /* peach */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+#question1, #question2, #question3, #question4, #question5, #question6, #question7,#question8,#question9,#question10 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #FFC0CB; /* pink */
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button[type="submit"] {
+    background-color: #FFA07A; /* salmon */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #FF7F50; /* coral */
+}
+</style>
+<body>
+    <h2>This test is for language vocabulary</h2>
+                <video id="videoElement" autoplay></video>
+    <form>
+        <div class="question">
+                <span id="question1">
+                    Question 1
+                </span><br><br>
+                <div class="content" onclick="q1score()">
+                    What does the picture show?<br><br>
+                    <img src="{{ url_for('static', filename='pk.png') }}" width=300 height=300><br>
+                    <input type="radio" id="q1a" name="q1" value="4">
+                    <label for="q1a">Pack of wolves</label><br>
+                    <input type="radio" id="q1b" name="q1" value="0">
+                    <label for="q1b">Pack of wools</label><br>
+                </div>
+                <span id="question2">
+                    Question 2
+                </span><br><br>
+                <div class="content" onclick="q2score()">
+                    Which word is a synonym for "small"?<br><br>
+                    <input type="radio" id="q2a" name="q2" value="0">
+                    <label for="q2a">shiny</label><br>
+                    <input type="radio" id="q2b" name="q2" value="4">
+                    <label for="q2b">tiny</label><br>
+                </div>
+                <span id="question3">
+                    Question 3
+                </span><br><br>
+                <div class="content" onclick="q3score()">
+                    Which word means "to stop doing something"?<br><br>
+                    <input type="radio" id="q3a" name="q3" value="0">
+                    <label for="q3a">pit</label><br>
+                    <input type="radio" id="q3b" name="q3" value="4">
+                    <label for="q3b">quit</label><br>
+                    <input type="radio" id="q3c" name="q3" value="0">
+                    <label for="q3c">put</label><br>
+                    <input type="radio" id="q3d" name="q3" value="0">
+                    <label for="q3d">quint</label><br>
+                </div>
+                <span id="question4">
+                    Question 4
+                </span><br><br>
+                <div class="content" onclick="q4score()">
+                    What does the picture show?<br><br>
+                    <img src="{{ url_for('static', filename='meat.png') }}" width=300 height=300><br>
+                    <input type="radio" id="q4a" name="q4" value="4">
+                    <label for="q4a">Meat</label><br>
+                    <input type="radio" id="q4b" name="q4" value="0">
+                    <label for="q4b">Meet</label><br>
+                </div>
+                <span id="question5">
+                    Question 5
+                </span><br><br>
+                <div class="content" onclick="q5score()">
+                    Find the word that rhymes with "mad"<br><br>
+                    <input type="radio" id="q5a" name="q5" value="0">
+                    <label for="q5a">Man</label><br>
+                    <input type="radio" id="q5b" name="q5" value="4">
+                    <label for="q5b">Sad</label><br>
+                </div>
+                <span id="question6">
+                    Question 6
+                </span><br><br>
+                <div class="content" onclick="q6score()">
+                    Identify the word that has the letter 'y' in the third position<br><br>
+                    <input type="radio" id="q6a" name="q6" value="0">
+                    <label for="q6a">yolk</label><br>
+                    <input type="radio" id="q6b" name="q6" value="4">
+                    <label for="q6b">fly</label><br>
+                </div>
+                <span id="question7">
+                    Question 7
+                </span><br><br>
+                <div class="content" onclick="q7score()">
+                    Which word means "a place where books are kept"?<br><br>
+                    <img src="{{ url_for('static', filename='lib.jpg') }}" width=300 height=300><br>
+                    <input type="radio" id="q7a" name="q7" value="4">
+                    <label for="q7a">Library</label><br>
+                    <input type="radio" id="q7b" name="q7" value="0">
+                    <label for="q7b">Librarian</label><br>
+                </div>
+                <span id="question8">
+                    Question 8
+                </span><br><br>
+                <div class="content" onclick="q8score()">
+                    Which word describes "an event where people compete against each other"?<br><br>
+                    <input type="radio" id="q8a" name="q8" value="0">
+                    <label for="q8a">Compeetittion</label><br>
+                    <input type="radio" id="q8b" name="q8" value="4">
+                    <label for="q8b">Competition</label><br>
+                </div>
+                <span id="question9">
+                    Question 9
+                </span><br><br>
+                <div class="content" onclick="q9score()">
+                    Which word is pronounced differently from the others?<br><br>
+                    <input type="radio" id="q9a" name="q9" value="0">
+                    <label for="q9a">Cough</label><br>
+                    <input type="radio" id="q9b" name="q9" value="4">
+                    <label for="q9b">Dough</label><br>
+                    <input type="radio" id="q9c" name="q9" value="0">
+                    <label for="q9c">Tough</label><br>
+                </div>
+                <span id="question10">
+                    Question 10
+                </span><br><br>
+                <div class="content" onclick="q10score()">
+                    Read the following sentence: "The cat sat on the mat." What did the cat sit on?<br><br>
+                    <input type="radio" id="q10a" name="q10" value="0">
+                    <label for="q10a">Cat</label><br>
+                    <input type="radio" id="q10b" name="q10" value="4">
+                    <label for="q10b">Mat</label><br>
+                    <input type="radio" id="q10c" name="q10" value="4">
+                    <label for="q10c">Sat</label><br>
+                </div>
+                <button type="submit" id="button" onclick="submitscore(event)">SUBMIT</button>
+        </div>
+    </form>
+<script>
+console.log("Welcome to the Quiz!")
+let lang_vocab=0, memory=0, visual=0, audio=0;
+let start = Date.now(), end, diff, speed_score;
+let ans=[], arr=[];
+for(let i=1; i<10; i++)
+    ans[i]=0;
+
+function q1score() {
+    if (document.getElementById('q1a').checked)
+        ans[1] = document.getElementById('q1a').value;
+        
+    else if (document.getElementById('q1b').checked)
+        ans[1] = document.getElementById('q1b').value;
+}
+
+function q2score() {
+    if (document.getElementById('q2a').checked)
+        ans[2] = document.getElementById('q2a').value;
+
+    else if (document.getElementById('q2b').checked)
+        ans[2] = document.getElementById('q2b').value;
+} 
+function q3score() {
+    if (document.getElementById('q3a').checked)
+        ans[3] = document.getElementById('q3a').value;
+
+    else if (document.getElementById('q3b').checked)
+        ans[3] = document.getElementById('q3b').value;
+
+    else if (document.getElementById('q3c').checked)
+        ans[3] = document.getElementById('q3c').value;
+    
+        else if (document.getElementById('q3d').checked)
+        ans[3] = document.getElementById('q3d').value;
+}  
+function q4score() {
+    if (document.getElementById('q4a').checked)
+        ans[4] = document.getElementById('q4a').value;
+        
+    else if (document.getElementById('q4b').checked)
+        ans[4] = document.getElementById('q4b').value;
+}
+function q5score() {
+    if (document.getElementById('q5a').checked)
+        ans[5] = document.getElementById('q5a').value;
+        
+    else if (document.getElementById('q5b').checked)
+        ans[5] = document.getElementById('q5b').value;
+}
+
+function q6score() {
+    if (document.getElementById('q6a').checked)
+        ans[6] = document.getElementById('q6a').value;
+        
+    else if (document.getElementById('q6b').checked)
+        ans[6] = document.getElementById('q6b').value;
+}
+
+function q7score() {
+    if (document.getElementById('q7a').checked)
+        ans[7] = document.getElementById('q7a').value;
+        
+    else if (document.getElementById('q7b').checked)
+        ans[7] = document.getElementById('q7b').value;
+}
+
+function q8score() {
+    if (document.getElementById('q8a').checked)
+        ans[8] = document.getElementById('q8a').value;
+        
+    else if (document.getElementById('q8b').checked)
+        ans[8] = document.getElementById('q8b').value;
+}
+
+function q9score() {
+    if (document.getElementById('q9a').checked)
+        ans[9] = document.getElementById('q9a').value;
+        
+    else if (document.getElementById('q9b').checked)
+        ans[9] = document.getElementById('q9b').value;
+    else if (document.getElementById('q9c').checked)
+        ans[9] = document.getElementById('q9c').value;
+}
+
+function q10score() {
+    if (document.getElementById('q10a').checked)
+        ans[10] = document.getElementById('q10a').value;
+        
+    else if (document.getElementById('q10b').checked)
+        ans[10] = document.getElementById('q10b').value;
+    else if (document.getElementById('q10c').checked)
+        ans[10] = document.getElementById('q10c').value;
+}
+
+const video = document.getElementById('videoElement');
+
+        // Access the user's webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                // Set the video source to the user's webcam stream
+                video.srcObject = stream;
+            })
+            .catch(error => {
+                console.error('Error accessing webcam:', error);
+            });
+function submitscore() {
+    event.preventDefault();
+    diff=0;
+    speed_score=0;
+    end = Date.now();
+    console.log("end: " + end);
+    diff =(end - start)/1000;
+    console.log("difference: "+diff);
+    
+    if(diff>25 && diff<=60)
+        speed_score=1;
+    else if(diff>60 && diff<=75)
+        speed_score=0.9;
+    else if(diff>75 && diff<=90)
+        speed_score=0.8;
+    else if(diff>90 && diff<=110)
+        speed_score=0.7;
+    else if(diff>110 && diff<=120)
+        speed_score=0.6;
+    else if(diff>120 && diff<=130)
+        speed_score=0.5;
+    else if(diff>130 && diff<=140)
+        speed_score=0.4;
+    else if(diff>140 && diff<=150)
+        speed_score=0.3;
+    else if(diff>150 && diff<=160)
+        speed_score=0.2;
+    else if(diff>160 && diff<=170)
+        speed_score=0.1;
+    
+    for(let i=1; i<=10; i++)
+    {
+        arr[i] = Number(ans[i] || 0);
+    }
+    lang_vocab = (arr[1]+arr[2]+arr[3]+arr[4]+arr[5]+arr[6]+arr[7]+arr[8]+arr[9]+arr[10])/40;
+    const g1_score = {speed_score , lang_vocab};
+    localStorage.setItem('g1_score', JSON.stringify(g1_score));
+    alert(`Speed Score = ${speed_score}\n Language vocabulary Score = ${lang_vocab}`);
+    window.location.href="{{ url_for('g2_911') }}"
+}    
+</script>
+</body>
+</html>

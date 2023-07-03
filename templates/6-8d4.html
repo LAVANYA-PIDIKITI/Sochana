@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+  <style>
+    #options {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="question"></div>
+  <div id="options">
+    <button id="option1" onclick="checkAnswer(1)">Option 1</button>
+    <button id="option2" onclick="checkAnswer(2)">Option 2</button>
+    <button id="option3" onclick="checkAnswer(3)">Option 3</button>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    let startTime = 0;
+    let score = 0;
+    let questionNum = 1;
+    let numQuestions = 10;
+
+    let questions = [
+      {text: "Q1.What is the sum of 6+9", options: ["15", "12", "18"]},
+      {text: "Q2.Can you draw a square in a paper now?", options: ["yes", "no","maybe"]},
+      {text: "Q3.What is the difference between 10 and 3?", options: ["13", "7", "5"]},
+      {text: "Q4.What is the number that comes before 8?", options: ["9", "8", "7"]},
+      {text: "Q5.What did you have for breakfast today morning?", options: ["Can remember", "Cannot remember","maybe"]},
+      {text: "Q6.Show with your fingers how to subtract 5 and 3", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q7.Write the number 7 in a paper", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q8.Count 10 to 1 backwards", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q9.What is the month that comes after July?", options: ["June", "July","August"]},
+      {text: "Q10.What is the time when the minute hand is on 12 and the hour hand is on 6?", options: ["6 'o' clock", "12 'o' clock","both"]}
+    ];
+
+    let answers = [1,1,2,3,1,1,1,1,3,1];
+
+    function startQuiz() {
+      showQuestion();
+      setTimeout(removeQuestion, 2000);
+    }
+
+    function showQuestion() {
+      let question = questions[questionNum-1];
+      let options = question.options;
+      let option1 = options[0];
+      let option2 = options[1];
+      let option3 = options[2];
+      document.getElementById("question").innerHTML = question.text;
+      document.getElementById("option1").innerHTML = option1;
+      document.getElementById("option2").innerHTML = option2;
+      document.getElementById("option3").innerHTML = option3;
+      questionNum++;
+    }
+
+    function removeQuestion() {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("options").style.display = "block";
+      startTime = new Date().getTime();
+    }
+
+    function checkAnswer(answer) {
+      if (answer === answers[questionNum-2]) {
+        score += 1;
+      }
+      showNextQuestion();
+    }
+
+    function showNextQuestion() {
+      if (questionNum > numQuestions) {
+        showResult();
+        return;
+      }
+      document.getElementById("options").style.display = "none";
+      document.getElementById("question").style.display = "block";
+      showQuestion();
+      setTimeout(removeQuestion, 2000);
+    }
+
+    function showResult() {
+      memory = 0;
+  let endTime = new Date().getTime();
+  let timeTaken = (endTime - startTime) / 1000;
+  speed_score = timeTaken;
+  memory = score/10;
+      console.log("a ",memory);
+    const d4_score = { speed_score, memory };
+    console.log("d4 ",d4_score);
+    localStorage.setItem('d4_score', JSON.stringify(d4_score));
+    alert(`Speed Score = ${speed_score}\n Memory Score = ${memory}`);
+    window.location.href="{{ url_for('resultsd') }}";
+}
+  </script>
+
+  <script>
+    startQuiz();
+  </script>
+
+</body>
+</html>

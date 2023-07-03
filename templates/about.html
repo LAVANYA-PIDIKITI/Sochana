@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+.card h2 {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 28px;
+}
+
+.card p {
+  margin: 0 20px 20px;
+  text-align: justify;
+  font-size: 18px;
+}
+
+.card button {
+ /* display: block; */
+  margin: 0 auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #03e9f4;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.card button:hover {
+  background-color: #00b8d4;
+}
+
+.card-container {
+  display: flex;
+    flex-wrap: wrap;
+ /* flex-direction: row; */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.card {
+  flex: 0 0 calc(33.33% - 30px);
+  margin: 15px;
+  width: 300px;
+  height: 400px;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  background-color: white;
+  overflow: hidden;
+  color: #333;
+   transition: transform 0.3s ease-in-out;
+}
+
+button {
+  position: relative;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  display: block;
+  margin: auto;
+}
+
+button:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+button span {
+  position: absolute;
+  display: block;
+}
+
+button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+</style>
+<body>
+	<div class="card-container">
+	<div class="card">
+		<h2>Dyslexia</h2>
+		<p>Dyslexia is a common learning difficulty that affects the ability to read and write accurately and fluently. It is a neurological disorder that can cause difficulty with phonological processing, phonemic awareness, and working memory. <br>Dyslexia can impact a person's academic performance and overall confidence. However, with the right support and interventions, individuals with dyslexia can thrive and achieve their goals.</p>
+	</div>
+	<div class="card">
+		<h2>Dyscalculia</h2>
+		<p>Dyscalculia is a learning disability that affects a person's ability to understand and work with numbers.
+		Individuals with dyscalculia may have difficulty performing simple arithmetic, reading analog clocks, and measuring time.
+		<br>It is estimated that dyscalculia affects about 5-7% of the population.
+		Dyscalculia can be diagnosed and managed with appropriate interventions and accommodations.</p>
+	</div>
+	<div class="card">
+		<h2>Autism</h2>
+		<p>Autism Spectrum Disorder (ASD), is a complex neurodevelopmental disorder that affects communication, social interaction, and behavior.
+		<br>Symptoms of autism can vary widely, but may include difficulties in verbal and nonverbal communication, difficulty in social interactions, and repetitive behaviors or interests.
+		<br>Autism is a lifelong condition, but early intervention can help improve outcomes and quality of life for individuals with autism.</p>
+	</div>
+	</div>
+
+	<button style="text-align: center;" type="submit">
+        <span></span>
+        <span></span>
+       <a href="{{ url_for('login') }}"> Take test!!</a>
+     </button>
+</body>
+</html>

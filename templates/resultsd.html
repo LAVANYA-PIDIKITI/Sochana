@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(#141e30, #243b55);
+            justify-content: center;
+            justify-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        table {
+    margin: 0 auto;
+}
+#scores-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+        }
+
+        .button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #03e9f4;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: #00b8d4;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        ul{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Results</h1></center>
+    <table>
+        <thead>
+            <tr>
+                <th>Test</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sequencing and Recognizing Patterns</td>
+                <td id="seq-pattern">{{ sequence_pattern }}</td>
+            </tr>
+            <tr>
+                <td>Average Memory Score</td>
+                <td id="memory-score">{{ memory }}</td>
+            </tr>
+            <tr>
+                <td>Average Speed Score</td>
+                <td id="speed-score">{{ speed_score }}</td>
+            </tr>
+            <tr>
+                <td>Visual Perception and Processing</td>
+                <td id="percept-score">{{ perception }}</td>
+            </tr>
+            <tr>
+                <td>Abstract Reasoning</td>
+                <td id="abs-score">{{ a_reasoning }}</td>
+            </tr>
+            <tr>
+                <td>Survey Score</td>
+                <td id="surveyd-score">{{ sdur_score }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form id="scores-form" method="POST" action="{{ url_for('predictd') }}">
+        <input type="hidden" id="seq" name="seq" value="{{ sequence_pattern }}">
+        <input type="hidden" id="speed" name="speed" value="{{ speed_score }}">
+        <input type="hidden" id="mem" name="mem" value="{{ memory}}">
+        <input type="hidden" id="perc" name="perc" value="{{ perception }}">
+        <input type="hidden" id="abs" name="abs" value="{{ a_reasoning }}">
+        <input type="hidden" id="surveyd" name="surveyd" value="{{ surveyd_score }}">
+        <button type="submit">Submit</button>
+    </form>
+<!-- In your HTML file -->
+
+<script>
+// Retrieve scores from localStorage
+const d1_score = JSON.parse(localStorage.getItem('d1_score'));
+const sequence_pattern = parseFloat(d1_score.sequence_pattern);
+console.log('s',sequence_pattern)
+const d1_ss = parseFloat(d1_score.speed_score);
+
+const d2_score = JSON.parse(localStorage.getItem('d2_score'));
+const perception = parseFloat(d2_score.perception);
+const d2_ss = parseFloat(d2_score.speed_score);
+
+const d3_score = JSON.parse(localStorage.getItem('d3_score'));
+const a_reasoning = parseFloat(d3_score.a_reasoning);
+const d3_ss = parseFloat(d3_score.speed_score);
+
+const d4_score = JSON.parse(localStorage.getItem('d4_score'));
+const memory = parseFloat(d4_score.memory);
+const d4_ss = parseFloat(d4_score.speed_score);
+
+const sd_score = JSON.parse(localStorage.getItem('surveyd_score'));
+const sdur_score = parseFloat(sd_score.rounded);
+
+var avg_ss = (d1_ss + d2_ss + d3_ss + d4_ss) / 4;
+
+// Update table with scores
+document.getElementById('seq-pattern').textContent = sequence_pattern;
+document.getElementById('speed-score').textContent = avg_ss.toFixed(2);
+document.getElementById('memory-score').textContent = memory;
+document.getElementById('percept-score').textContent = perception;
+document.getElementById('abs-score').textContent = a_reasoning;
+document.getElementById('surveyd-score').textContent = sdur_score;
+
+// Set hidden input fields with scores
+document.getElementById('seq').value = sequence_pattern;
+document.getElementById('speed').value = avg_ss.toFixed(2);
+document.getElementById('mem').value = memory;
+document.getElementById('perc').value = perception;
+document.getElementById('abs').value = a_reasoning;
+document.getElementById('surveyd').value = sdur_score;
+
+  // Send scores to Flask server using AJAX
+  $.ajax({
+    type: 'POST',
+    url: "{{ url_for('predictd') }}",
+    data: {
+      sequence_pattern: sequence_pattern,
+      speed_score: avg_ss.toFixed(2),
+      memory_score: memoryScore,
+      visual_score: visual,
+      audio_score: audio,
+      survey_score: sur_score
+    },
+    success: function(response) {
+      console.log('Response from server:', response);
+      // Handle the response from the server
+    },
+    error: function(xhr, status, error) {
+      console.error('Error:', error);
+    }
+  });
+</script>
+
+</body>
+</html>

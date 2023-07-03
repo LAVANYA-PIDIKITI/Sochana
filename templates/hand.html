@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handwriting Recognition Demo</title>
+    <style>
+        #videoElement {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%; /* Update width and height as needed */
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .wordContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 48px;
+            color: #000;
+        }
+
+        .wordContainer input {
+            font-size: 48px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoElement" autoplay></video>
+    <div class="wordContainer">
+        <p>Please write the word in the air</p>
+        <input type="text" id="wordInput" autofocus>
+    </div>
+    <script>
+        // Get the video element
+        const video = document.getElementById('videoElement');
+
+        // Access the user's webcam
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                // Set the video source to the user's webcam stream
+                video.srcObject = stream;
+            })
+            .catch(error => {
+                console.error('Error accessing webcam:', error);
+            });
+
+        // Get the word input element
+        const wordInput = document.getElementById('wordInput');
+
+        // Add an event listener for input change
+        wordInput.addEventListener('input', (event) => {
+            const writtenWord = event.target.value;
+            console.log('Written word:', writtenWord); // Replace this with your handwriting recognition logic
+        });
+    </script>
+</body>
+</html>

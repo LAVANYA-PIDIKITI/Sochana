@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>survey page</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+<style>
+body {
+    background-image: url("{{ url_for('static', filename='sbg.jpg') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+        #videoElement {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 320px; /* Update width and height as needed */
+            height: 240px;
+            object-fit: cover;
+        }
+        h2{
+            color:white;
+        }
+        #warning{
+            color: white;
+        }
+form {
+    background-color: #FFDAB9; /* light blue */
+    border: 2px solid #FFDAB9; /* peach */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+#question1, #question2, #question3, #question4, #question5, #question6, #question7,#question8,#question9,#question10 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #F8F8FF; /* pink */
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button[type="submit"] {
+    background-color: #FFA07A; /* salmon */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #FF7F50; /* coral */
+}
+</style>
+<body>
+<h2>This survey is for Dyslexia</h2>
+    <div class="parallax1">
+        <div id="warning">
+            <centre> This survey is specially designed for parents and teachers to test if their child/student is
+                dyslexic or not. This survey is based on your keen observation towards your child/student.
+            </centre>
+        </div>
+    </div>
+    <div class="main">
+        <form name="survey" method="get" action="{{ url_for('home') }}">
+            <div class="question">
+
+                <span id="question">
+                    Question 1
+                </span><br><br>
+                <div class="content" onclick="q1score()">
+                    Does this student seem to be developing more slowly
+than other children of same age?<br>
+                    <input type="radio" id="q1a" name="q1" value="0">
+                    <label for="q1a">Yes-frequently</label><br>
+                    <input type="radio" id="q1b" name="q1" value="2">
+                    <label for="q1b">Sometimes</label><br>
+                    <input type="radio" id="q1c" name="q1" value="4">
+                    <label for="q1c">No-never</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 2
+                </span><br><br>
+                <div class="content" onclick="q2score()">
+                    Does this student have difficulty in communicating or
+socialising with others?<br>
+                    <input type="radio" id="q2a" name="q2" value="0">
+                    <label for="q2a">Yes-frequently</label><br>
+                    <input type="radio" id="q2b" name="q2" value="2">
+                    <label for="q2b">Sometimes</label><br>
+                    <input type="radio" id="q2c" name="q2" value="4">
+                    <label for="q2c">No-never</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 3
+                </span><br><br>
+                <div class="content" onclick="q3score()">
+                    Does this student have problems in remembering
+things?<br>
+                    <input type="radio" id="q3a" name="q3" value="0">
+                    <label for="q3a">Yes-frequently</label><br>
+                    <input type="radio" id="q3b" name="q3" value="2">
+                    <label for="q3b">Sometimes</label><br>
+                    <input type="radio" id="q3c" name="q3" value="4">
+                    <label for="q3c">No-never</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 4
+                </span><br><br>
+                <div class="content" onclick="q4score()">
+Do you notice repetitive gestures like spinning on a
+certain spot, enjoy a particular lifestyle and way of
+object arrangements which can otherwise cause
+anxiety, in this student?<br>
+                    <input type="radio" id="q4a" name="q4" value="0">
+                    <label for="q4a">Yes-frequently</label><br>
+                    <input type="radio" id="q4b" name="q4" value="2">
+                    <label for="q4b">Sometimes</label><br>
+                    <input type="radio" id="q4c" name="q4" value="4">
+                    <label for="q4c">No-never</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 5
+                </span><br><br>
+                <div class="content" onclick="q5score()">
+Does this student react to external changes in
+unexpected manner? For example, those who are
+non-chalant (unconcerned/disinterested) towards
+parents’ yelling and unresponsive to stimuli such as
+stinging, hotness and coldness.
+<br>
+                    <input type="radio" id="q5a" name="q5" value="0">
+                    <label for="q5a">Yes-frequently</label><br>
+                    <input type="radio" id="q5b" name="q5" value="2">
+                    <label for="q5b">Sometimes</label><br>
+                    <input type="radio" id="q5c" name="q5" value="4">
+                    <label for="q5c">No-never</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 6
+                </span><br><br>
+                <div class="content" onclick="q6score()">
+                    Is this student comparatively slow in reading or
+writing?<br>
+                    <input type="radio" id="q6a" name="q6" value="0">
+                    <label for="q6a">Yes-frequently</label><br>
+                    <input type="radio" id="q6b" name="q6" value="2">
+                    <label for="q6b">Sometimes</label><br>
+                    <input type="radio" id="q6c" name="q6" value="4">
+                    <label for="q6c">No-never</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 7
+                </span><br><br>
+                <div class="content" onclick="q7score()">
+                    Does this student have difficulty with written
+expression (e.g., problems with grammar,
+punctuation or organization) even after being taught
+several times?<br>
+                    <input type="radio" id="q7a" name="q7" value="0">
+                    <label for="q7a">Yes</label><br>
+                    <input type="radio" id="q7b" name="q7" value="4">
+                    <label for="q7b">No</label><br>
+                    <input type="radio" id="q7c" name="q7" value="2">
+                    <label for="q7c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 8
+                </span><br><br>
+                <div class="content" onclick="q8score()">
+                    Does this child lack sense of direction?<br>
+                    <input type="radio" id="q8a" name="q8" value="0">
+                    <label for="q8a">Yes</label><br>
+                    <input type="radio" id="q8b" name="q8" value="4">
+                    <label for="q8b">No</label><br>
+                    <input type="radio" id="q8c" name="q8" value="2">
+                    <label for="q8c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 9
+                </span><br><br>
+                <div class="content" onclick="q9score()">
+                    Does this student reverse letters or symbols while
+writing? For example, writing “q” instead “p” or
+b/d, u/v, w/m, frequently?<br>
+                    <input type="radio" id="q9a" name="q9" value="0">
+                    <label for="q9a">Yes</label><br>
+                    <input type="radio" id="q9b" name="q9" value="4">
+                    <label for="q9b">No</label><br>
+                    <input type="radio" id="q9c" name="q9" value="2">
+                    <label for="q9c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 10
+                </span><br><br>
+                <div class="content" onclick="q10score()">
+                    Does this student repeat words or parts of words? For example, when asked ‘Do you want to drink water’ the child will reply “You want to drink water”<br>
+                    <input type="radio" id="q10a" name="q10" value="0">
+                    <label for="q10a">Yes</label><br>
+                    <input type="radio" id="q10b" name="q10" value="4">
+                    <label for="q10b">No</label><br>
+                    <input type="radio" id="q10c" name="q10" value="2">
+                    <label for="q10c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 11
+                </span><br><br>
+                <div class="content" onclick="q11score()">
+                    Does this student speak in short, fragmented phrases?<br>
+                    <input type="radio" id="q11a" name="q11" value="0">
+                    <label for="q11a">Yes</label><br>
+                    <input type="radio" id="q11b" name="q11" value="4">
+                    <label for="q11b">No</label><br>
+                    <input type="radio" id="q11c" name="q11" value="2">
+                    <label for="q11c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 12
+                </span><br><br>
+                <div class="content" onclick="q12score()">
+                    Does your child worry for sequences, facts and information that were not taught before?<br>
+                    <input type="radio" id="q12a" name="q12" value="0">
+                    <label for="q12a">Yes</label><br>
+                    <input type="radio" id="q12b" name="q12" value="4">
+                    <label for="q12b">No</label><br>
+                    <input type="radio" id="q12c" name="q12" value="2">
+                    <label for="q12c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 13
+                </span><br><br>
+                <div class="content" onclick="q13score()">
+                    Does this student say words in the wrong order, for example saying “blue sky is” instead of ‘sky is blue’?<br>
+                    <input type="radio" id="q13a" name="q13" value="0">
+                    <label for="q13a">Yes</label><br>
+                    <input type="radio" id="q13b" name="q13" value="4">
+                    <label for="q13b">No</label><br>
+                    <input type="radio" id="q13c" name="q13" value="2">
+                    <label for="q13c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 14
+                </span><br><br>
+                <div class="content" onclick="q14score()">
+                    Does this student struggle in the use of words, for example repeating words again and again in a sentence or unable to use appropriate words?<br>
+                    <input type="radio" id="q14a" name="q14" value="0">
+                    <label for="q14a">Yes</label><br>
+                    <input type="radio" id="q14b" name="q14" value="4">
+                    <label for="q14b">No</label><br>
+                    <input type="radio" id="q14c" name="q14" value="2">
+                    <label for="q14c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 15
+                </span><br><br>
+                <div class="content" onclick="q15score()">
+                    Does this student have difficulty in imitating speech sounds, for example a child is asked to repeat the word “boat” but he fails to repeat in the desired manner?<br>
+                    <input type="radio" id="q15a" name="q15" value="0">
+                    <label for="q15a">Yes</label><br>
+                    <input type="radio" id="q15b" name="q15" value="4">
+                    <label for="q15b">No</label><br>
+                    <input type="radio" id="q15c" name="q15" value="2">
+                    <label for="q15c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 16
+                </span><br><br>
+                <div class="content" onclick="q16score()">
+                    Does this student speak unclearly so that the sounds run into one another?<br>
+                    <input type="radio" id="q16a" name="q16" value="0">
+                    <label for="q16a">Yes</label><br>
+                    <input type="radio" id="q16b" name="q16" value="4">
+                    <label for="q16b">No</label><br>
+                    <input type="radio" id="q16c" name="q16" value="2">
+                    <label for="q16c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 17
+                </span><br><br>
+                <div class="content" onclick="q17score()">
+                    Does this student make a lot of repeated syntax (grammatical) or semantics (structural) mistakes? For example, repeatedly writing ‘he push him’ instead of ‘he pushes/pushed him’.<br>
+                    <input type="radio" id="q17a" name="q17" value="0">
+                    <label for="q17a">Yes</label><br>
+                    <input type="radio" id="q17b" name="q17" value="4">
+                    <label for="q17b">No</label><br>
+                    <input type="radio" id="q17c" name="q17" value="2">
+                    <label for="q17c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 18
+                </span><br><br>
+                <div class="content" onclick="q18score()">
+                   In comparison to other students, does this student have inability to connect actions with consequences? For example, no understanding of meaning of silent gestures (Shh...) or keeping the finger on the mouth to stop talking.<br>
+                    <input type="radio" id="q18a" name="q18" value="0">
+                    <label for="q18a">Yes</label><br>
+                    <input type="radio" id="q18b" name="q18" value="4">
+                    <label for="q18b">No</label><br>
+                    <input type="radio" id="q18c" name="q18" value="2">
+                    <label for="q18c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 19
+                </span><br><br>
+                <div class="content" onclick="q19score()">
+                    Is this student not able to express emotions and needs?<br>
+                    <input type="radio" id="q19a" name="q19" value="0">
+                    <label for="q19a">Yes</label><br>
+                    <input type="radio" id="q19b" name="q19" value="4">
+                    <label for="q19b">No</label><br>
+                    <input type="radio" id="q19c" name="q19" value="2">
+                    <label for="q19c">Unknown</label><br>
+                </div>
+                <br>
+
+                <span id="question">
+                    Question 20
+                </span><br><br>
+                <div class="content" onclick="q20score()">
+                    Do you think this student has improper eye contact?<br>
+                    <input type="radio" id="q20a" name="q20" value="0">
+                    <label for="q20a">Yes</label><br>
+                    <input type="radio" id="q20b" name="q20" value="4">
+                    <label for="q20b">No</label><br>
+                    <input type="radio" id="q20c" name="q20" value="2">
+                    <label for="q20c">Unknown</label><br>
+                </div>
+                <br>
+        <button type="submit" id="button" onclick="submitscore(event)">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+    <script>
+       console.log("Welcome to the survey!")
+
+var arr=[], ans = [];
+for(var i=0; i<=20; i++){
+    arr[i]=0;
+    ans[i]=0;}
+
+function q1score() {
+    if (document.getElementById('q1a').checked)
+        ans[1] = document.getElementById('q1a').value;
+        
+    else if (document.getElementById('q1b').checked)
+        ans[1] = document.getElementById('q1b').value;
+
+    else if (document.getElementById('q1c').checked)
+        ans[1] = document.getElementById('q1c').value;
+}
+
+function q2score() {
+    if (document.getElementById('q2a').checked)
+        ans[2] = document.getElementById('q2a').value;
+
+    else if (document.getElementById('q2b').checked)
+        ans[2] = document.getElementById('q2b').value;
+
+    else if (document.getElementById('q2c').checked)
+        ans[2] = document.getElementById('q2c').value;
+}
+
+function q3score() {
+    if (document.getElementById('q3a').checked)
+        ans[3] = document.getElementById('q3a').value;
+
+    else if (document.getElementById('q3b').checked)
+        ans[3] = document.getElementById('q3b').value;
+
+    else if (document.getElementById('q3c').checked)
+        ans[3] = document.getElementById('q3c').value;
+}
+
+function q4score() {
+    if (document.getElementById('q4a').checked)
+        ans[4] = document.getElementById('q4a').value;
+
+    else if (document.getElementById('q4b').checked)
+        ans[4] = document.getElementById('q4b').value;
+
+    else if (document.getElementById('q4c').checked)
+        ans[4] = document.getElementById('q4c').value;
+}
+
+function q5score() {
+    if (document.getElementById('q5a').checked)
+        ans[5] = document.getElementById('q5a').value;
+
+    else if (document.getElementById('q5b').checked)
+        ans[5] = document.getElementById('q5b').value;
+
+    else if (document.getElementById('q5c').checked)
+        ans[5] = document.getElementById('q5c').value;
+}
+
+function q6score() {
+    if (document.getElementById('q6a').checked)
+        ans[6] = document.getElementById('q6a').value;
+
+    else if (document.getElementById('q6b').checked)
+        ans[6] = document.getElementById('q6b').value;
+
+    else if (document.getElementById('q6c').checked)
+        ans[6] = document.getElementById('q6c').value;
+}
+
+function q7score() {
+    if (document.getElementById('q7a').checked)
+        ans[7] = document.getElementById('q7a').value;
+
+    else if (document.getElementById('q7b').checked)
+        ans[7] = document.getElementById('q7b').value;
+
+    else if (document.getElementById('q7c').checked)
+        ans[7] = document.getElementById('q7c').value;
+}
+
+function q8score() {
+    if (document.getElementById('q8a').checked)
+        ans[8] = document.getElementById('q8a').value;
+
+    else if (document.getElementById('q8b').checked)
+        ans[8] = document.getElementById('q8b').value;
+
+    else if (document.getElementById('q8c').checked)
+        ans[8] = document.getElementById('q8c').value;
+}
+
+function q9score() {
+    if (document.getElementById('q9a').checked)
+        ans[9] = document.getElementById('q9a').value;
+
+    else if (document.getElementById('q9b').checked)
+        ans[9] = document.getElementById('q9b').value;
+
+    else if (document.getElementById('q9c').checked)
+        ans[9] = document.getElementById('q9c').value;
+}
+
+function q10score() {
+    if (document.getElementById('q10a').checked)
+        ans[10] = document.getElementById('q10a').value;
+
+    else if (document.getElementById('q10b').checked)
+        ans[10] = document.getElementById('q10b').value;
+
+    else if (document.getElementById('q10c').checked)
+        ans[10] = document.get1ElementById('q10c').value;
+}
+
+function q11score() {
+    if (document.getElementById('q11a').checked)
+        ans[11] = document.getElementById('q11a').value;
+
+    else if (document.getElementById('q11b').checked)
+        ans[11] = document.getElementById('q11b').value;
+
+    else if (document.getElementById('q11c').checked)
+        ans[11] = document.get1ElementById('q11c').value;
+}
+
+function q12score() {
+    if (document.getElementById('q12a').checked)
+        ans[12] = document.getElementById('q12a').value;
+
+    else if (document.getElementById('q12b').checked)
+        ans[12] = document.getElementById('q12b').value;
+
+    else if (document.getElementById('q12c').checked)
+        ans[12] = document.getElementById('q12c').value;
+}
+
+function q13score() {
+    if (document.getElementById('q13a').checked)
+        ans[13] = document.getElementById('q13a').value;
+
+    else if (document.getElementById('q13b').checked)
+        ans[13] = document.getElementById('q13b').value;
+
+    else if (document.getElementById('q13c').checked)
+        ans[13] = document.getElementById('q13c').value;
+}
+
+function q14score() {
+    if (document.getElementById('q14a').checked)
+        ans[14] = document.getElementById('q14a').value;
+
+    else if (document.getElementById('q14b').checked)
+        ans[14] = document.getElementById('q14b').value;
+
+    else if (document.getElementById('q14c').checked)
+        ans[14] = document.getElementById('q14c').value;
+}
+
+function q15score() {
+    if (document.getElementById('q15a').checked)
+        ans[15] = document.getElementById('q15a').value;
+
+    else if (document.getElementById('q15b').checked)
+        ans[15] = document.getElementById('q15b').value;
+
+    else if (document.getElementById('q15c').checked)
+        ans[15] = document.getElementById('q15c').value;
+}
+
+function q16score() {
+    if (document.getElementById('q16a').checked)
+        ans[16] = document.getElementById('q16a').value;
+
+    else if (document.getElementById('q16b').checked)
+        ans[16] = document.getElementById('q16b').value;
+
+    else if (document.getElementById('q16c').checked)
+        ans[16] = document.getElementById('q16c').value;
+} 
+
+function q17score() {
+    if (document.getElementById('q17a').checked)
+        ans[17] = document.getElementById('q17a').value;
+
+    else if (document.getElementById('q17b').checked)
+        ans[17] = document.getElementById('q17b').value;
+
+    else if (document.getElementById('q17c').checked)
+        ans[17] = document.getElementById('q17c').value;
+}
+
+function q18score() {
+    if (document.getElementById('q18a').checked)
+        ans[18] = document.getElementById('q18a').value;
+
+    else if (document.getElementById('q18b').checked)
+        ans[18] = document.getElementById('q18b').value;
+
+    else if (document.getElementById('q18c').checked)
+        ans[18] = document.getElementById('q18c').value;
+}
+
+function q19score() {
+    if (document.getElementById('q19a').checked)
+        ans[19] = document.getElementById('q19a').value;
+
+    else if (document.getElementById('q19b').checked)
+        ans[19] = document.getElementById('q19b').value;
+
+    else if (document.getElementById('q19c').checked)
+        ans[19] = document.getElementById('q19c').value;
+}
+
+function q20score() {
+    if (document.getElementById('q20a').checked)
+        ans[20] = document.getElementById('q20a').value;
+
+    else if (document.getElementById('q20b').checked)
+        ans[20] = document.getElementById('q20b').value;
+
+    else if (document.getElementById('q20c').checked)
+        ans[20] = document.getElementById('q20c').value;
+}
+function submitscore() {
+
+    var sum=0, score=0;
+
+    for(let i=1; i<=20; i++){
+        sum += Number(ans[i]);
+    }
+
+    score=Number(sum/80);
+    var rounded = Number(score.toFixed(1));
+    alert(`Your survey score is : ${rounded}`);
+    const survey_score = {rounded};
+    localStorage.setItem('survey_score', JSON.stringify(survey_score));
+    window.location.href="{{ url_for('home') }}";
+}
+
+    </script>
+</body>
+
+</html>

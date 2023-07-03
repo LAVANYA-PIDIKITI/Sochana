@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(#141e30, #243b55);
+            justify-content: center;
+            justify-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        table {
+    margin: 0 auto;
+}
+#scores-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+        }
+
+        .button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #03e9f4;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: #00b8d4;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        ul{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Results</h1></center>
+    <table>
+        <thead>
+            <tr>
+                <th>Test</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Language Vocabulary</td>
+                <td id="lang-vocab-score">{{ lang_vocab }}</td>
+            </tr>
+            <tr>
+                <td>Memory</td>
+                <td id="memory-score">{{ memory_score }}</td>
+            </tr>
+            <tr>
+                <td>Average Speed Score</td>
+                <td id="speed-score">{{ speed_score }}</td>
+            </tr>
+            <tr>
+                <td>Visual Discrimination</td>
+                <td id="visual-score">{{ visual_score }}</td>
+            </tr>
+            <tr>
+                <td>Audio Discrimination</td>
+                <td id="audio-score">{{ audio_score }}</td>
+            </tr>
+            <tr>
+                <td>Survey Score</td>
+                <td id="survey-score">{{ survey_score }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form id="scores-form" method="POST" action="{{ url_for('predict') }}">
+        <input type="hidden" id="lang-vocab" name="lang_vocab" value="{{ lang_vocab }}">
+        <input type="hidden" id="speed" name="speed_score" value="{{ speed_score }}">
+        <input type="hidden" id="memory" name="memory_score" value="{{ memory_score }}">
+        <input type="hidden" id="visual" name="visual_score" value="{{ visual_score }}">
+        <input type="hidden" id="audio" name="audio_score" value="{{ audio_score }}">
+        <input type="hidden" id="survey" name="survey_score" value="{{ survey_score }}">
+        <button type="submit">Submit</button>
+    </form>
+<!-- In your HTML file -->
+
+<script>
+// Retrieve scores from localStorage
+const g1_score = JSON.parse(localStorage.getItem('g1_score'));
+const lang_vocab = parseFloat(g1_score.lang_vocab);
+const g1_ss = parseFloat(g1_score.speed_score);
+const g2_score = JSON.parse(localStorage.getItem('g2_score'));
+const visual = parseFloat(g2_score.visual);
+const g2_ss = parseFloat(g2_score.speed_score);
+const g4_score = JSON.parse(localStorage.getItem('g4_score'));
+const audio = parseFloat(g4_score.audio);
+const memoryScore = parseFloat(localStorage.getItem('mem_score'));
+const s_score = JSON.parse(localStorage.getItem('survey_score'));
+const sur_score = parseFloat(s_score.rounded);
+
+var avg_ss = (g1_ss + g2_ss) / 2;
+
+// Update table with scores
+document.getElementById('lang-vocab-score').textContent = lang_vocab;
+document.getElementById('speed-score').textContent = avg_ss.toFixed(2);
+document.getElementById('memory-score').textContent = memoryScore;
+document.getElementById('visual-score').textContent = visual;
+document.getElementById('audio-score').textContent = audio;
+document.getElementById('survey-score').textContent = sur_score;
+
+// Set hidden input fields with scores
+document.getElementById('lang-vocab').value = lang_vocab;
+document.getElementById('speed').value = avg_ss.toFixed(2);
+document.getElementById('memory').value = memoryScore;
+document.getElementById('visual').value = visual;
+document.getElementById('audio').value = audio;
+document.getElementById('survey').value = sur_score;
+
+  // Send scores to Flask server using AJAX
+  $.ajax({
+    type: 'POST',
+    url: "{{ url_for('predict') }}",
+    data: {
+      lang_vocab: lang_vocab,
+      speed_score: avg_ss.toFixed(2),
+      memory_score: memoryScore,
+      visual_score: visual,
+      audio_score: audio,
+      survey_score: sur_score
+    },
+    success: function(response) {
+      console.log('Response from server:', response);
+      // Handle the response from the server
+    },
+    error: function(xhr, status, error) {
+      console.error('Error:', error);
+    }
+  });
+</script>
+
+</body>
+</html>

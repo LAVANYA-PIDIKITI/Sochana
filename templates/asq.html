@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Autism Spectrum Quotient</title>
+        <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(#141e30, #243b55);
+            justify-content: center;
+            align-items: center;
+            color: white;
+                background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  background-attachment: fixed;
+        }
+        form {
+    background-color: transparent; /* light blue */
+    border: 2px solid #FFDAB9; /* peach */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #03e9f4;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00b8d4;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        ul {
+            color: white;
+        }
+
+        .description {
+            font-size: 18px;
+            color: white;
+            margin-top: 30px;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: row;
+        }
+
+        .gif-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .text-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        #question1, #question2, #question3, #question4, #question5, #question6, #question7,#question8,#question9,#question10 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+form{
+    justify-content: center;
+    align-items: center;
+}
+
+        </style>
+    </head>
+    <body>
+        <form action="{{ url_for('calcm') }}" method="post" onsubmit="return calculateScore()">
+            <div class="question">
+                <span id="question1">
+                    Question 1
+                </span><br><br>
+
+                <div class="content">
+                    I prefer to do things with others rather than on my own.<br><br>
+                    <input type="radio" id="q1a" name="q1" value="0">
+                    <label for="q1a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q1b" name="q1" value="0">
+                    <label for="q1b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q1c" name="q1" value="1">
+                    <label for="q1c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q1d" name="q1" value="1">
+                    <label for="q1d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    Question 2
+                </span><br><br>
+
+                <div class="content" onclick="">
+                    I prefer to do things the same way over and over again. <br><br>                   
+                    <input type="radio" id="q2a" name="q2" value="0">
+                    <label for="q2a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q2b" name="q2" value="0">
+                    <label for="q2b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q2c" name="q2" value="1">
+                    <label for="q2c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q2d" name="q2" value="1">
+                    <label for="q2d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    Question 3
+                </span><br><br>
+
+                <div class="content" onclick="">
+                    If I try to imagine something, I find it very easy to create a picture in my mind.<br><br>
+                    <input type="radio" id="q3a" name="q3" value="0">
+                    <label for="q3a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q3b" name="q3" value="0">
+                    <label for="qb">Slightly Agree</label><br>
+
+                    <input type="radio" id="q3c" name="q3" value="1">
+                    <label for="q3c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q3d" name="q3" value="1">
+                    <label for="q3d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    Question 4
+                </span><br><br>
+                <div class="content" onclick="">
+                    I frequently get so strongly absorbed in one thing that I lose sight of other things.<br><br>
+                    <input type="radio" id="q4a" name="q4" value="1">
+                    <label for="q4a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q4b" name="q4" value="1">
+                    <label for="q4b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q4c" name="q4" value="0">
+                    <label for="q4c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q4d" name="q4" value="0">
+                    <label for="q4d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    Question 5
+                </span><br><br>
+                <div class="content" onclick="">
+                    I often notice small sounds when others do not.<br><br>
+                    <input type="radio" id="q5a" name="q5" value="1">
+                    <label for="q5a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q5b" name="q5" value="1">
+                    <label for="q5b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q5c" name="q5" value="0">
+                    <label for="q5c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q5d" name="q5" value="0">
+                    <label for="q5d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    Question 6
+                </span><br><br>
+                <div class="content" onclick="">
+                    I usually notice car number plates or similar strings of information.<br><br>
+                    <input type="radio" id="q6a" name="q6" value="1">
+                    <label for="q6a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q6b" name="q6" value="1">
+                    <label for="61b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q6c" name="q6" value="0">
+                    <label for="q6c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q6d" name="q6" value="0">
+                    <label for="q6d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    7
+                </span><br><br>
+                <div class="content" onclick="">
+                    Other people frequently tell me that what I've said is impolite, even though I think it is polite.<br><br>
+                    <input type="radio" id="q7a" name="q7" value="1">
+                    <label for="q7a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q7b" name="q7" value="1">
+                    <label for="q7b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q7c" name="q7" value="0">
+                    <label for="q7c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q7d" name="q7" value="0">
+                    <label for="q7d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    8
+                </span><br><br>
+                <div class="content" onclick="">
+                    When I'm reading a story, I can easily imagine what the characters might look like.<br><br>
+                    <input type="radio" id="q8a" name="q8" value="0">
+                    <label for="q8a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q8b" name="q8" value="0">
+                    <label for="q8b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q8c" name="q8" value="1">
+                    <label for="q8c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q8d" name="q8" value="1">
+                    <label for="q8d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    9
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am fascinated by dates.<br><br>
+                    <input type="radio" id="q9a" name="q9" value="1">
+                    <label for="q9a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q9b" name="q9" value="1">
+                    <label for="q9b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q9c" name="q9" value="0">
+                    <label for="q9c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q9d" name="q9" value="0">
+                    <label for="q9d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    10
+                </span><br><br>
+                <div class="content" onclick="">
+                    In a social group, I can easily keep track of several different people's conversations.<br><br>
+                    <input type="radio" id="q10a" name="q10" value="0">
+                    <label for="q10a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q10b" name="q10" value="0">
+                    <label for="q10b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q10c" name="q10" value="1">
+                    <label for="q10c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q10d" name="q10" value="1">
+                    <label for="q10d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    11
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find social situations easy.<br><br>
+                    <input type="radio" id="q11a" name="q11" value="0">
+                    <label for="q11a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q11b" name="q11" value="0">
+                    <label for="q11b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q11c" name="q11" value="1">
+                    <label for="q11c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q11d" name="q11" value="1">
+                    <label for="q11d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    12
+                </span><br><br>
+                <div class="content" onclick="">
+                    I tend to notice details that others do not.<br><br>
+                    <input type="radio" id="q12a" name="q12" value="1">
+                    <label for="q12a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q12b" name="q12" value="1">
+                    <label for="q1b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q12c" name="q12" value="0">
+                    <label for="q12c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q312d" name="q12" value="0">
+                    <label for="q12d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    13
+                </span><br><br>
+                <div class="content" onclick="">
+                    I would rather go to a library than a party.<br><br>
+                    <input type="radio" id="q13a" name="q13" value="1">
+                    <label for="q13a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q13b" name="q13" value="1">
+                    <label for="q13b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q13c" name="q13" value="0">
+                    <label for="q13c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q13d" name="q13" value="0">
+                    <label for="q13d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    14
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find making up stories easy.<br><br>
+                    <input type="radio" id="q14a" name="q14" value="0">
+                    <label for="q1a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q14b" name="q14" value="0">
+                    <label for="q14b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q14c" name="q14" value="1">
+                    <label for="q14c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q14d" name="q14" value="1">
+                    <label for="q14d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    15
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find myself drawn more strongly to people than to things.<br><br>
+                    <input type="radio" id="q15a" name="q15" value="0">
+                    <label for="q15a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q15b" name="q15" value="0">
+                    <label for="q15b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q15c" name="q15" value="1">
+                    <label for="q15c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q15d6" name="q15" value="1">
+                    <label for="q15d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    16
+                </span><br><br>
+                <div class="content" onclick="">
+                    I tend to have very strong interests which I get upset about if I can't pursue.<br><br>
+                    <input type="radio" id="q16a" name="q16" value="1">
+                    <label for="q16a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q16b" name="q16" value="1">
+                    <label for="q16b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q16c" name="q16" value="0">
+                    <label for="q16c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q16d" name="q16" value="0">
+                    <label for="q16d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    17
+                </span><br><br>
+                <div class="content" onclick="">
+                    I enjoy social chit-chat.<br><br>
+                    <input type="radio" id="q17a" name="q17" value="0">
+                    <label for="q17a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q17b" name="q17" value="0">
+                    <label for="q17b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q17c" name="q17" value="1">
+                    <label for="q17c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q17d" name="q17" value="1">
+                    <label for="q17d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    18
+                </span><br><br>
+                <div class="content" onclick="">
+                    When I talk, it isn't always easy for others to get a word in edgeways.<br><br>
+                    <input type="radio" id="q18a" name="q18" value="1">
+                    <label for="q18a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q18b" name="q18" value="1">
+                    <label for="q18b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q18c" name="q18" value="0">
+                    <label for="q18c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q18d" name="q18" value="0">
+                    <label for="q18d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    19
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am fascinated by numbers.<br><br>
+                    <input type="radio" id="q19a" name="q19" value="1">
+                    <label for="q19a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q19b" name="q19" value="1">
+                    <label for="q19b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q19c" name="q19" value="0">
+                    <label for="q19c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="2019d" name="q19" value="0">
+                    <label for="q19d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    20
+                </span><br><br>
+                <div class="content" onclick="">
+                    When I'm reading a story, I find it difficult to work out the characters' intentions.<br><br>
+                    <input type="radio" id="q20a" name="q20" value="1">
+                    <label for="q20a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q20b" name="q20" value="1">
+                    <label for="q20b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q20c" name="q20" value="0">
+                    <label for="q20c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q20d" name="q20" value="0">
+                    <label for="q20d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    21
+                </span><br><br>
+                <div class="content" onclick="">
+                    I don't particularly enjoy reading fiction.<br><br>
+                    <input type="radio" id="q21a" name="q21" value="1">
+                    <label for="q21a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q21b" name="q21" value="1">
+                    <label for="q21b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q21c" name="q21" value="0">
+                    <label for="q21c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q21d" name="q21" value="0">
+                    <label for="q21d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    22
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find it hard to make new friends.<br><br>
+                    <input type="radio" id="q22a" name="q22" value="1">
+                    <label for="q22a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q22b" name="q22" value="1">
+                    <label for="q22b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q22c" name="q22" value="0">
+                    <label for="q22c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q22d" name="q22" value="0">
+                    <label for="q22d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    23
+                </span><br><br>
+                <div class="content" onclick="">
+                    I notice patterns in things all the time.<br><br>
+                    <input type="radio" id="q23a" name="q23" value="1">
+                    <label for="q23a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q23b" name="q23" value="1">
+                    <label for="q23b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q23c" name="q23" value="0">
+                    <label for="q23c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q23d" name="q23" value="0">
+                    <label for="q23d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    24
+                </span><br><br>
+                <div class="content" onclick="">
+                    I would rather go to the theatre than a museum.<br><br>
+                    <input type="radio" id="q24a" name="q24" value="0">
+                    <label for="q24a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q24b" name="q24" value="0">
+                    <label for="q24b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q24c" name="q24" value="1">
+                    <label for="q24c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q24d" name="q24" value="1">
+                    <label for="q24d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    25
+                </span><br><br>
+                <div class="content" onclick="">
+                    It does not upset me if my daily routine is disturbed.<br><br>
+                    <input type="radio" id="q25a" name="q25" value="0">
+                    <label for="q25a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q25b" name="q25" value="0">
+                    <label for="q25b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q25c" name="q25" value="1">
+                    <label for="q25c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q25d" name="q25" value="1">
+                    <label for="q25d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    26
+                </span><br><br>
+                <div class="content" onclick="">
+                    I frequently find that I don't know how to keep a conversation going.<br><br>
+                    <input type="radio" id="q26a" name="q26" value="1">
+                    <label for="q26a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q26b" name="q26" value="1">
+                    <label for="q26b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q26c" name="q26" value="0">
+                    <label for="q26c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q26d" name="q26" value="0">
+                    <label for="q26d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    27
+                </span><br><br>
+                <div class="content" onclick="">
+                    I frequently find that I don't know how to keep a conversation going.<br><br>
+                    <input type="radio" id="q27a" name="q27" value="0">
+                    <label for="q27a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q27b" name="q27" value="0">
+                    <label for="q27b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q27c" name="q27" value="1">
+                    <label for="q27c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q27d" name="q27" value="1">
+                    <label for="q27d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    28
+                </span><br><br>
+                <div class="content" onclick="">
+                    I usually concentrate more on the whole picture, rather than the small details.<br><br>
+                    <input type="radio" id="q28a" name="q28" value="0">
+                    <label for="q28a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q28b" name="q28" value="0">
+                    <label for="q28b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q28c" name="q28" value="1">
+                    <label for="q28c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q28d" name="q28" value="1">
+                    <label for="q28d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    29
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am not very good at remembering phone numbers.<br><br>
+                    <input type="radio" id="q29a" name="q29" value="0">
+                    <label for="q29a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q29b" name="q29" value="0">
+                    <label for="q29b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q29c" name="q29" value="1">
+                    <label for="q29c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q29d" name="q29" value="1">
+                    <label for="q29d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    30
+                </span><br><br>
+                <div class="content" onclick="">
+                    I don't usually notice small changes in a situation, or a person's appearance.<br><br>
+                    <input type="radio" id="q30a" name="q30" value="0">
+                    <label for="q30a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q30b" name="q30" value="0">
+                    <label for="q30b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q30c" name="q30" value="1">
+                    <label for="q30c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q30d" name="q30" value="1">
+                    <label for="q30d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    31
+                </span><br><br>
+                <div class="content" onclick="">
+                    I know how to tell if someone listening to me is getting bored.<br><br>
+                    <input type="radio" id="q31a" name="q31" value="0">
+                    <label for="q31a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q31b" name="q31" value="0">
+                    <label for="q1b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q31c" name="q31" value="1">
+                    <label for="q31c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q31d" name="q31" value="1">
+                    <label for="q31d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    32
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find it easy to do more than one thing at once.<br><br>
+                    <input type="radio" id="q32a" name="q32" value="0">
+                    <label for="q32a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q32b" name="q32" value="0">
+                    <label for="q32b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q32c" name="q32" value="1">
+                    <label for="q32c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q32d" name="q32" value="1">
+                    <label for="q32d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    33
+                </span><br><br>
+                <div class="content" onclick="">
+                    When I talk on the phone, I'm not sure when it's my turn to speak.<br><br>
+                    <input type="radio" id="q33a" name="q33" value="1">
+                    <label for="q33a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q33b" name="q33" value="1">
+                    <label for="q33b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q33c" name="q33" value="0">
+                    <label for="q33c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q33d" name="q33" value="0">
+                    <label for="q33d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    34
+                </span><br><br>
+                <div class="content" onclick="">
+                    I enjoy doing things spontaneously.<br><br>
+                    <input type="radio" id="q34a" name="q34" value="0">
+                    <label for="q34a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q34b" name="q34" value="0">
+                    <label for="q34b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q1c" name="q34" value="1">
+                    <label for="q34c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q34d" name="q34" value="1">
+                    <label for="q34d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    35
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am often the last to understand the point of a joke.<br><br>
+                    <input type="radio" id="q35a" name="q35" value="1">
+                    <label for="q35a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q35b" name="q35" value="1">
+                    <label for="q35b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q35c" name="q35" value="0">
+                    <label for="q35c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q35d" name="q35" value="0">
+                    <label for="q35d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    36
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find it easy to work out what someone is thinking or feeling just by looking at their face.<br><br>
+                    <input type="radio" id="q36a" name="q36" value="0">
+                    <label for="q36a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q36b" name="q36" value="0">
+                    <label for="q36b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q36c" name="q36" value="1">
+                    <label for="q36c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q36d" name="q36" value="1">
+                    <label for="q36d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    37
+                </span><br><br>
+                <div class="content" onclick="">
+                    If there is an interruption, I can switch back to what I was doing very quickly.<br><br>
+                    <input type="radio" id="q37a" name="q37" value="0">
+                    <label for="q37a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q37b" name="q37" value="0">
+                    <label for="q37b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q37c" name="q37" value="1">
+                    <label for="q37c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q37d" name="q37" value="1">
+                    <label for="q37d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    38
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am good at social chit-chat.<br><br>
+                    <input type="radio" id="q38a" name="q38" value="0">
+                    <label for="q38a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q38b" name="q38" value="0">
+                    <label for="q38b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q38c" name="q38" value="1">
+                    <label for="q38c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q38d" name="q38" value="1">
+                    <label for="q38d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    39
+                </span><br><br>
+                <div class="content" onclick="">
+                    People often tell me that I keep going on and on about the same thing.<br><br>
+                    <input type="radio" id="q39a" name="q39" value="1">
+                    <label for="q39a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q39b" name="q39" value="1">
+                    <label for="q39b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q39c" name="q39" value="0">
+                    <label for="q39c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q39d" name="q39" value="0">
+                    <label for="q39d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    40
+                </span><br><br>
+                <div class="content" onclick="">
+                    When I was young, I used to enjoy playing games involving pretending with other children.<br><br>
+                    <input type="radio" id="q40a" name="q40" value="0">
+                    <label for="q40a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q40b" name="q40" value="0">
+                    <label for="q40b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q40c" name="q40" value="1">
+                    <label for="q40c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q40d" name="q40" value="1">
+                    <label for="q40d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    41
+                </span><br><br>
+                <div class="content" onclick="">
+                    I like to collect information about categories of things<br><br>
+                    <input type="radio" id="q41a" name="q41" value="1">
+                    <label for="q41a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q41b" name="q41" value="1">
+                    <label for="q1b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q41c" name="q41" value="0">
+                    <label for="q41c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q41d" name="q41" value="0">
+                    <label for="q41d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    42
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find it difficult to imagine what it would be like to be someone else.<br><br>
+                    <input type="radio" id="q42a" name="q42" value="1">
+                    <label for="q1a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q42b" name="q42" value="1">
+                    <label for="q42b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q42c" name="q42" value="0">
+                    <label for="q42c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q42d" name="q42" value="0">
+                    <label for="q42d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    43
+                </span><br><br>
+                <div class="content" onclick="">
+                    I like to plan any activities I participate in carefully<br><br>
+                    <input type="radio" id="q43a" name="q43" value="1">
+                    <label for="q43a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q43b" name="q43" value="1">
+                    <label for="q43b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q43c" name="q43" value="0">
+                    <label for="q43c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q43d" name="q43" value="0">
+                    <label for="q43d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    44
+                </span><br><br>
+                <div class="content" onclick="">
+                    I enjoy social occasions.<br><br>
+                    <input type="radio" id="q44a" name="q44" value="0">
+                    <label for="q44a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q44b" name="q44" value="0">
+                    <label for="q44b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q44c" name="q44" value="1">
+                    <label for="q44c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q44d" name="q44" value="1">
+                    <label for="q44d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    45
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find it difficult to work out people's intentions.<br><br>
+                    <input type="radio" id="q45a" name="q45" value="1">
+                    <label for="q1a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q45b" name="q45" value="1">
+                    <label for="q45b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q45c" name="q45" value="0">
+                    <label for="q45c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q45d" name="q45" value="0">
+                    <label for="q45d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    46
+                </span><br><br>
+                <div class="content" onclick="">
+                    New situations make me anxious.<br><br>
+                    <input type="radio" id="q46a" name="q46" value="1">
+                    <label for="q46a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q46b" name="q46" value="1">
+                    <label for="q46b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q46c" name="q46" value="0">
+                    <label for="q1c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q46d" name="q46" value="0">
+                    <label for="q46d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    47
+                </span><br><br>
+                <div class="content" onclick="">
+                    I enjoy meeting new people.<br><br>
+                    <input type="radio" id="q47a" name="q47" value="0">
+                    <label for="q47a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q47b" name="q47" value="0">
+                    <label for="q47b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q47c" name="q47" value="1">
+                    <label for="q47c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q47d" name="q47" value="1">
+                    <label for="q47d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    48
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am a good diplomat.<br><br>
+                    <input type="radio" id="q48a" name="q48" value="0">
+                    <label for="q48a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q48b" name="q48" value="0">
+                    <label for="q48b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q48c" name="q48" value="1">
+                    <label for="q48c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q48d" name="q48" value="1">
+                    <label for="q48d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    49
+                </span><br><br>
+                <div class="content" onclick="">
+                    I am not very good at remembering people's date of birth.<br><br>
+                    <input type="radio" id="q49a" name="q49" value="0">
+                    <label for="q49a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q49b" name="q49" value="0">
+                    <label for="q49b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q49c" name="q49" value="1">
+                    <label for="q49c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q49d" name="q49" value="1">
+                    <label for="q49d">Definitely Disagree</label><br>
+                </div>
+
+                <span id="question1">
+                    50
+                </span><br><br>
+                <div class="content" onclick="">
+                    I find it very easy to play games with children that involve pretending.<br><br>
+                    <input type="radio" id="q50a" name="q50" value="0">
+                    <label for="q50a">Definitely Agree</label><br>
+
+                    <input type="radio" id="q50b" name="q50" value="0">
+                    <label for="q50b">Slightly Agree</label><br>
+
+                    <input type="radio" id="q50c" name="q50" value="1">
+                    <label for="q50c">Slightly Disagree</label><br>
+
+                    <input type="radio" id="q50d" name="q50" value="1">
+                    <label for="q50d">Definitely Disagree</label><br>
+                </div>
+
+                <input type="submit" name="submit" value="Submit">
+            </div>
+        </form>
+
+        <script>
+            function calculateScore() 
+            {
+                const scoreElements = document.querySelectorAll('input[type="radio"]:checked');
+                let score = 0;
+                scoreElements.forEach(element => {
+                    score += parseInt(element.value);
+                });
+                alert(score);
+                if(score>26){
+                    alert('mild autistic');
+                }
+                else if(score>32){
+                    alert('autistic');
+                }
+                else{
+                    alert('not autistic');
+                }
+                return true;
+            }
+        </script> 
+    </body>
+</html>

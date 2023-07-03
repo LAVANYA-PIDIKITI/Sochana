@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Game3</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+<style>
+body {
+    background-image: url("{{ url_for('static', filename='9-11bg.jpg') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+#bg{
+        background-color: #F8F8FF; /* light blue */
+    border: 2px solid #FFDAB9; /* peach */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: 0 auto;
+}
+#box {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        #answer {
+            visibility: hidden;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #val {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        #value {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+        }
+
+</style>
+<body>
+    <h2>This test is for Memory</h2>
+    <div id="bg">
+    <div id="box"></div>
+
+    <div id="answer" style="visibility: hidden;">
+        <div id="val"></div>
+        <input type='tel' id='value'><br><br>
+        <input type='submit' onclick='myFunction(event)'>
+    </div>
+
+    <div id="demo"></div>
+</div>
+    <script>
+const box1 = [
+  ['dog', 'tog', 'bog', 'fog'],
+  ['bed', 'dip', 'qip', 'bip'],
+  ['now', 'won', 'mow', 'wom'],
+  ['bog', 'dog', 'qog', 'pog'],
+  ['mug', 'dug', 'gum', 'wum'],
+  ['bed', 'deb', 'ped', 'qep'],
+  ['tap', 'pat', 'bat', 'tab'],
+  ['rat', 'tar', 'car', 'cat'],
+  ['bit', 'bip', 'rip', 'rib'],
+  ['sun', 'nus', 'usn', 'uns']
+];
+        let score = Number(localStorage.getItem('mem_score')) || 0;
+        console.log(score);
+        let reloadCount = localStorage.getItem('reloadCount') || 0;
+        console.log(reloadCount);
+        let c, k, count = 0;
+        if (reloadCount < 10) { // Change to 10 for 10 times
+            c = Math.floor(Math.random() * box1.length);
+            const box2 = box1[c];
+            document.getElementById("box").innerText = box2.join(', ');
+
+            setTimeout(() => {
+                const box = document.getElementById("box");
+                box.style.display = 'none';
+            }, 3000);
+
+            const el = document.getElementById('answer');
+            setTimeout(() => {
+                k = Math.floor(Math.random() * 4);
+                document.getElementById("val").innerText = "Enter the " + (k + 1) + " element";
+                el.style.visibility = 'visible';
+            }, 3005);
+        } else {
+            score = score / 40; // Divide by 40 for 10 times
+            score = Math.round(score * 100) / 100;
+            alert("Your memory score is " + score);
+            localStorage.setItem('mem_score', score);
+            localStorage.removeItem('reloadCount');
+            window.location.href="{{ url_for('g4_68') }}";
+        }
+
+        function myFunction(event) {
+            event.preventDefault();
+            var x = document.getElementById("value").value;
+            if (box1[c][k].toLowerCase() != x.toLowerCase()) {
+                score += Number(0);
+                alert(`Score = ${score}`);
+            } else {
+                score += Number(4);
+                alert(`Score = ${score}`);
+
+            }
+            localStorage.setItem('mem_score', score);
+
+            if (reloadCount < 10) { // Change to 10 for 10 times
+                reloadCount++;
+                localStorage.setItem('reloadCount', reloadCount);
+                location.reload();
+            }
+        }
+    </script>
+</body>

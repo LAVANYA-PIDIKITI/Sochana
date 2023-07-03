@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+  <style>
+    #options {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="question"></div>
+  <div id="options">
+    <button id="option1" onclick="checkAnswer(1)">Option 1</button>
+    <button id="option2" onclick="checkAnswer(2)">Option 2</button>
+    <button id="option3" onclick="checkAnswer(3)">Option 3</button>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    let startTime = 0;
+    let score = 0;
+    let questionNum = 1;
+    let numQuestions = 10;
+
+    let questions = [
+      {text: "Q1.Draw a picture of a clock showing the time 3:45.", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q2.Write down the word apple backwards.", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q3.Repeat these numbers back to me: 6, 2, 9, 4, 7", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q4.Orange|Grey|Yellow|Pink What's the second color?", options: ["Grey", "Pink", "Yellow"]},
+      {text: "Q5.What did you have for breakfast today morning?", options: ["Can remember", "Cannot remember","maybe"]},
+      {text: "Q6.Repeat this sequence of numbers in reverse order 8, 4, 9, 2, 5", options: ["5,2,9,4,8", "5,9,4,2,8","5,4,9,2,8"]},
+      {text: "Q7.Write the number 79 in a paper", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q8.Count 12 to 1 backwards", options: ["Can do it", "Can't do it","maybe"]},
+      {text: "Q9.tree, house, car, dog, flower-The first word is ", options: ["house", "tree","car"]},
+      {text: "Q10.Repeat this sentence back to me: The quick brown fox jumped over the lazy dog", options: ["Can do it", "Can't do it","maybe"]}
+    ];
+
+    let answers = [1,1,1,2,1,1,1,1,1,1];
+
+    function startQuiz() {
+      showQuestion();
+      setTimeout(removeQuestion, 2000);
+    }
+
+    function showQuestion() {
+      let question = questions[questionNum-1];
+      let options = question.options;
+      let option1 = options[0];
+      let option2 = options[1];
+      let option3 = options[2];
+      document.getElementById("question").innerHTML = question.text;
+      document.getElementById("option1").innerHTML = option1;
+      document.getElementById("option2").innerHTML = option2;
+      document.getElementById("option3").innerHTML = option3;
+      questionNum++;
+    }
+
+    function removeQuestion() {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("options").style.display = "block";
+      startTime = new Date().getTime();
+    }
+
+    function checkAnswer(answer) {
+      if (answer === answers[questionNum-2]) {
+        score += 1;
+      }
+      showNextQuestion();
+    }
+
+    function showNextQuestion() {
+      if (questionNum > numQuestions) {
+        showResult();
+        return;
+      }
+      document.getElementById("options").style.display = "none";
+      document.getElementById("question").style.display = "block";
+      showQuestion();
+      setTimeout(removeQuestion, 2000);
+    }
+
+    function showResult() {
+  let endTime = new Date().getTime();
+  let timeTaken = (endTime - startTime) / 1000;
+  speed_score = timeTaken;
+  memory = score/10;
+      console.log("a ",memory);
+    const d4_score = { speed_score, memory };
+    console.log("d4 ",d4_score);
+    localStorage.setItem('d4_score', JSON.stringify(d4_score));
+    alert(`Speed Score = ${speed_score}\n Memory Score = ${memory}`);
+    window.location.href="{{ url_for('resultsd') }}";
+}
+  </script>
+
+  <script>
+    startQuiz();
+  </script>
+
+</body>
+</html>

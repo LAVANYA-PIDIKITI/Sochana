@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Voice-to-Text Pronunciation Checker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <style>
+body {
+    background-image: url("{{ url_for('static', filename='9-11bg.jpg') }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+      background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+
+        h1 {
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        #outputDiv {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>This test is for audio discrimination</h1>
+    <div id="wordDiv"></div>
+    <textarea id="inputTextArea" rows="5" cols="30"></textarea>
+    <button id="startBtn">Start</button>
+    <button id="stopBtn">Stop</button>
+    <button id="nextBtn" disabled>Next Word</button>
+    <div id="outputDiv"></div>
+    <script>
+        // Get DOM elements
+            const wordDiv = document.getElementById('wordDiv');
+            const inputTextArea = document.getElementById('inputTextArea');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const outputDiv = document.getElementById('outputDiv');
+
+            // Create a SpeechRecognition object
+            const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+
+            // Set properties for recognition
+            recognition.lang = 'en-US';
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            // Array of words for pronunciation checking
+            const words = ['Bouquet', 'Ophthalmologist', 'Spaghetti', 'Psychologist', 'Xylophone', 'Chrysanthemum', 'Synthesize', 'Thorough', 'Chameleon', 'Parliament'];
+            var checked = [];
+            var currentWordIndex = 0; // Index of the current word
+            var score = 0; // User's score
+            var round = 0; // Current round
+            var flag = 0;
+
+            // Display a new word for the user to spell
+            function displayNewWord() {
+                if (currentWordIndex < words.length) {
+                    wordDiv.textContent = 'Round ' + (round + 1) + ': Spell the word - ' + words[currentWordIndex];
+                    inputTextArea.value = '';
+                    if(flag == 0){
+                        recognition.start();
+                        flag = 1;
+                    }
+                } else {
+                        audio = score/40;
+    const g4_score = {audio};
+    localStorage.setItem('g4_score', JSON.stringify(g4_score));
+    alert(`Audio Discrimination Score = ${audio}`)
+    window.location.href = "{{ url_for('results') }}";
+                    wordDiv.textContent = 'Game Over! Your final score is: ' + score/40;
+                    startBtn.disabled = true;
+                    stopBtn.disabled = true;
+                    nextBtn.disabled = true;
+                }
+            }
+
+             // Event listener for next button
+                nextBtn.addEventListener('click', () => {
+                    currentWordIndex++;
+                    round++;
+                    displayNewWord();
+                });
+
+            // Event listener for start button
+            startBtn.addEventListener('click', () => {
+                displayNewWord();
+            });
+
+            // Event listener for stop button
+            stopBtn.addEventListener('click', () => {
+                recognition.stop();
+                currentWordIndex = 10;
+                displayNewWord();
+            });
+
+            // Event listener for recognition result
+                recognition.addEventListener('result', (event) => {
+                    var transcript = Array.from(event.results)
+                        .map((result) => result[0].transcript)
+                        .join('');
+
+                    // Display the recognized text
+                    const currentWord = transcript.trim().toLowerCase().split(' ').pop();
+                    outputDiv.textContent = currentWord;
+                    nextBtn.disabled = false;
+
+                    // Check if the recognized text matches the current word
+                    if (currentWord === words[currentWordIndex].toLowerCase() && !checked.includes(currentWord)) 
+                    {
+                        checked.push(currentWord);
+                        console.log("here: ",score);
+                        score=score+4;
+                    }
+
+                });
+
+            // Event listener for recognition error
+            recognition.addEventListener('error', (event) => {
+                console.error('Recognition error:', event.error);
+            });
+    </script>
+</body>
+
+</html>

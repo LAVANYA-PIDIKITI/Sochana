@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background: linear-gradient(#141e30, #243b55);
+			margin: 0;
+			padding: 0;
+			color: #fff;
+			overflow: hidden;
+		}
+
+		.container {
+			width: 80%;
+			height: 100%;
+			margin: 0 auto;
+			text-align: center;
+			padding-top: 100px;
+		}
+
+		h1 {
+			font-size: 36px;
+			margin-bottom: 30px;
+		}
+
+		p {
+			font-size: 18px;
+			margin-bottom: 20px;
+		}
+
+		ul {
+			font-size: 16px;
+			margin-bottom: 30px;
+			list-style-type: none;
+			padding: 0;
+		}
+
+		ul li {
+			margin-bottom: 10px;
+		}
+
+		a {
+			display: inline-block;
+			margin-top: 20px;
+			padding: 10px 20px;
+			border-radius: 5px;
+			background-color: #03e9f4;
+			color: #fff;
+			text-decoration: none;
+			font-size: 16px;
+			transition: background-color 0.3s ease-in-out;
+		}
+
+		a:hover {
+			background-color: #02c6e2;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to Sochana! Thank you for taking the dyscalculia survey.</h1>
+		<strong><p>General Instructions:</p></strong>
+		<ul>
+			<li>Do not copy from any website</li>
+			<li>Please turn on the camera and microphone whenever needed</li>
+			<li>Make sure you attempt whatever you know</li>
+			<li>Ensure you read the question clearly</li>
+		</ul>
+		<p>Choose your age group:</p>
+		<a href="{{ url_for('d6') }}">6-8</a>
+		<a href="{{ url_for('d9') }}">9-11</a>
+	</div>
+</body>
+</html>
